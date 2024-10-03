@@ -136,6 +136,19 @@ export const services = (session) => {
         const coffe = service.coffee;
 
         // ! IMPLEMENTAR LÓGICA PARA CREAR UNA ORDEN
+        fetch("http://localhost:4321/orders", {
+          method: 'POST',
+          credentials: "include",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            coffee: coffe,
+            userId: session.userId,
+            img: img.src
+          })
+        })
+
       });
     });
   });
