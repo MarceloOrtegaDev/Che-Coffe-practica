@@ -145,7 +145,6 @@ export const services = (session) => {
           body: JSON.stringify({
             coffee: coffe,
             userId: session.userId,
-            img: img.src
           })
         })
 

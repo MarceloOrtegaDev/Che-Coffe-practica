@@ -1,13 +1,15 @@
 import { createOrder, getOrders, deleteOrderById, getOrderById } from "../models/order.model.js";
 
 export const createOrderCtrl = (req, res) => {
-  const userId = req.user.id;
-  const { coffee } = req.body;
+  const { coffee, userId } = req.body;
+  console.log(`Creating order for userId: ${userId}, coffee: ${coffee}`);
 
   const order = createOrder(coffee, userId);
-
-  res.status(201).json(order);
+  
+  console.log("Order created:", order);
+  return res.status(201).json(order);
 };
+
 
 export const getOrdersById = async (req, res) => {
   const { id } = req.params.id;

@@ -1,41 +1,41 @@
 import Img2 from "../assets/coffee2.png";
 
 // Datos de los servicios, incluyendo id, imagen, nombre, descripción y retraso de animación
-const ServicesData = [
-  {
-    id: 1,
-    img: Img2,
-    name: "Espresso",
-    description:
-      "A concentrated coffee served in small shots, known for its intense flavor.",
-    aosDelay: "100",
-  },
-  {
-    id: 2,
-    img: Img2,
-    name: "Americano",
-    description:
-      "An espresso with added hot water, making it smoother and less dense.",
-    aosDelay: "300",
-  },
-  {
-    id: 3,
-    img: Img2,
-    name: "Cappuccino",
-    description:
-      "Combines espresso with steamed milk and foam, creating a creamy texture and balance between coffee and milk.",
-    aosDelay: "500",
-  },
-];
+// const ServicesData = [
+//   {
+//     id: 1,
+//     img: Img2,
+//     name: "Espresso",
+//     description:
+//       "A concentrated coffee served in small shots, known for its intense flavor.",
+//     aosDelay: "100",
+//   },
+//   {
+//     id: 2,
+//     img: Img2,
+//     name: "Americano",
+//     description:
+//       "An espresso with added hot water, making it smoother and less dense.",
+//     aosDelay: "300",
+//   },
+//   {
+//     id: 3,
+//     img: Img2,
+//     name: "Cappuccino",
+//     description:
+//       "Combines espresso with steamed milk and foam, creating a creamy texture and balance between coffee and milk.",
+//     aosDelay: "500",
+//   },
+// ];
 
 const req = await fetch("http://localhost:4321/orders", {
-  method: "GET",
   credentials: "include",
-  headers: {
-    "Content-Type": "application/json",
-  }
-})
+  method: "GET",
+});
+
 const data = await req.json();
+console.log("Orders received:", data);
+
 
 // Función que crea y devuelve el fragmento de HTML para la sección de servicios
 export const listOfOrders = () => {
@@ -71,7 +71,7 @@ export const listOfOrders = () => {
     "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 md:gap-5 place-items-center";
 
   // Mapear los datos de los servicios para crear las tarjetas
-  ServicesData.map((service) => {
+  data.map((service) => {
     // Crear un contenedor <div> para cada tarjeta de servicio
     const serviceDiv = document.createElement("div");
     serviceDiv.className =
@@ -129,4 +129,3 @@ export const listOfOrders = () => {
   // Devolver el fragmento de documento completo
   return fragment;
 };
-
